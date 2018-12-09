@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style:none;
+    text-decoration: none;
+    color: #333;
+}
+body{
+    font-size: 12px;
+    line-height: 1.2;
+    background: #fff;
+}
+main{
+    height:calc(100vh - 50px);
+
+    overflow: scroll;
+    /*超出部分滚动效果*/
+    overflow-scrolling: touch;
+    /*在手机端有弹性效果*/
+}
+main>section{
+    display: none;
+
+}
+main>section:first-child{
+    display:block;
+    background: blue;
+    height:calc(100vh - 50px);
+}
+main>section:second-child{
+    display:block;
+    background: orange;
+    height:calc(100vh - 50px);
+}
+footer{
+    /*position: absolute;*/
+    height: 50px;
+    align-content: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+    border-top: 1px solid #ccc;
+
+}
+footer>div{
+    flex: 1;
+    text-align: center;
+
+}
+footer>div.active{
+    color: #ff5722;
+}
+footer>div>span{
+    display: block;
+}
