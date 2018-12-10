@@ -4,8 +4,14 @@
     box-sizing: border-box;
     list-style:none;
     text-decoration: none;
-    color: #333;
+    /*color: #333;为什么footer里面的字体会继承这里的属性？*/
 }
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
 body{
     font-size: 12px;
     line-height: 1.2;
@@ -25,14 +31,42 @@ main>section{
 }
 main>section:first-child{
     display:block;
-    background: blue;
-    height:calc(100vh - 50px);
+
+/*    height:calc(100vh - 50px);*/
 }
-main>section:second-child{
-    display:block;
-    background: orange;
-    height:calc(100vh - 50px);
+.item{
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
 }
+.item>a{
+    display: block;
+}
+.item>a> .cover{
+    float: left;
+
+}
+.item>a> .cover>img{
+    width: 70px;
+
+}
+.item>a> .detail{
+    float: left;
+    margin-left: 20px;
+    color: #999;
+    max-width:60vw;
+}
+.item>a> .detail>h2{
+    margin-bottom: 7px;
+    color: #000;
+}
+.item>a> .detail>.extra{
+    margin-top: 3px;
+}
+.item>a> .detail>.extra>.score{
+    color: orangered;
+}
+
+
 footer{
     /*position: absolute;*/
     height: 50px;
