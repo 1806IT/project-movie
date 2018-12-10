@@ -4,10 +4,14 @@ $('footer>div').on('click',function(){
     $(this).siblings().removeClass('active').end().addClass('active');
 })
 var index=0
+var isLoading=false;
 
 start()
 
 function start(){
+    if (isLoading){return;}
+    isLoading=true;
+    $('.loading').show();
     // ajax请求数据
     $.ajax({
         url:'http://api.douban.com/v2/movie/top250',
@@ -21,24 +25,30 @@ function start(){
         console.log(ret);
 
         setData(ret);
-        index+=15;
+        index+=20;
         console.log(index)
     }).fail(function(){
-        console.log('error...')
-    })
-}
+        console.log('error...');
+    }).always(function(){
+        isLoading=false;
+        $('loading').hide();
+    });
+};
 
-
+var clock;
 $('main').scroll(function(){
-    console.log($('section').eq(0).height())
-    console.log($('main').scrollTop())
-    if(($('.item').height()*250)<=$('main').scrollTop()){
-        alert('到底了');
-    }else if($('section').eq(0).height()-600<=$('main').scrollTop()+$('main').height()){
-        console.log('到15了')
-        start()
+    if(clock){
+        clearTimeout(clock);
     }
-})
+    clock=setTimeout(function(){
+        if(($('.item').height()*250)<=$('main').scrollTop()){
+            alert('到底了');
+        }else if($('section').eq(0).height()-600<=$('main').scrollTop()+$('main').height()){
+            console.log('到15了');
+            start();
+        }
+    },300);
+});
 
 // 拼装数据，拼装DOM
 
@@ -71,8 +81,8 @@ function setData(data){
         </div>
         `
         var $node=$(model)
-        $node.find('.cover img').attr('src',movie.images.medium)
-        $node.find('.detail h2').text(movie.title)
+        $node.find('.cover img').attr('src',movie.images.medium);
+        $node.find('.detail h2').text(movie.title);
         $node.find('.extra .score').text(movie.rating.average+'分')
         $node.find('.extra .collect').text(' /'+movie.collect_count)
         $node.find('.extra .year').text(movie.year+'年')
@@ -80,18 +90,18 @@ function setData(data){
         $node.find('.extra .director').text(function(){
             let directorArr=[];
             movie.directors.forEach(function(item){
-                directorArr.push(item.name)
+                directorArr.push(item.name);
             })
-            return directorArr.join('、')
-        })
+            return directorArr.join('、');
+        });
         $node.find('.extra .actors').text(function(){
             let actorsArr=[];
             movie.casts.forEach(function(item){
-                actorsArr.push(item.name)
-            })
-            return actorsArr.join('、')
-        })
-        $('section').eq(0).append($node)
+                actorsArr.push(item.name);
+            });
+            return actorsArr.join('、');
+        });
+        $('#top250').append($node)
     })
 }
 
