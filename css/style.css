@@ -17,23 +17,26 @@ body{
     line-height: 1.2;
     background: #fff;
 }
-main{
+/*main{
     height:calc(100vh - 50px);
 
-    overflow: scroll;
-    /*超出部分滚动效果*/
+!*    overflow: scroll;
+    !*超出部分滚动效果*!*!
     overflow-scrolling: touch;
-    /*在手机端有弹性效果*/
-}
-main>section{
+    !*在手机端有弹性效果*!
+}*/
+
+main section{
     display: none;
+    height:calc(100vh - 50px);
+    overflow: scroll;
 
 }
-main>section:first-child{
+main section:first-child{
     display:block;
 
-/*    height:calc(100vh - 50px);*/
 }
+
 .item{
     border-bottom: 1px solid #ccc;
     padding: 8px;
@@ -80,6 +83,8 @@ main>section:first-child{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
 }
+
+
 footer{
     /*position: absolute;*/
     height: 50px;
@@ -101,4 +106,31 @@ footer>div.active{
 }
 footer>div>span{
     display: block;
+}
+
+section .search-area {
+    color: #333;
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+section .search-area input {
+    width: calc(100% - 50px);
+    padding: 9px;
+    background-color: #eee;
+    border: none;
+    border-radius: 2px;
+    box-shadow: none;
+    outline: none;
+}
+
+section .search-area .button {
+    position: absolute;
+    right: 1px;
+    padding: 10px 10px;
+    background: #b37282;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
 }

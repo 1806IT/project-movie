@@ -41,12 +41,15 @@ $('main').scroll(function(){
         clearTimeout(clock);
     }
     clock=setTimeout(function(){
+        let i=$('.container').children().length;
+        console.log(i);
         if(($('.item').height()*250)<=$('main').scrollTop()){
             alert('到底了');
         }else if($('section').eq(0).height()-600<=$('main').scrollTop()+$('main').height()){
-            console.log('到15了');
             start();
+
         }
+        console.log('div'+$('.container').height())
     },300);
 });
 
@@ -101,7 +104,7 @@ function setData(data){
             });
             return actorsArr.join('、');
         });
-        $('#top250').append($node)
+        $node.appendTo($('.container'))
     })
 }
 
