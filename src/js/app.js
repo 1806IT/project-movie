@@ -4,9 +4,9 @@
             this.$tabs=$('footer>div');
             this.$panels=$('section');
             this.bind();
-            top250.init();
+/*             top250.init();
             usBox.init();
-            search.init();
+            search.init(); */
         },
         bind:function(){
             var self=this;

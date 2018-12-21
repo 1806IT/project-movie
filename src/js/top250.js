@@ -118,4 +118,5 @@
             return this.$container.height() <= (this.$element.scrollTop() + this.$element.height() + 50)
         }
     };
+    top250.init()
 }()

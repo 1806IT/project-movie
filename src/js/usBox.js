@@ -1,8 +1,9 @@
 !function(){
-    var view = document.$("#usBox")
+    var view = $("#usBox");
     var usBox = {
         init: function () {
             console.log('usBox ok');
+            this.$element = $("#usBox");
             this.$container = this.$element.find('.container')
             this.start();
         },
@@ -88,4 +89,5 @@
             })
         }
     }  
+    usBox.init()
 }()
